@@ -1,0 +1,40 @@
+// file: kbar.proto
+// author: Jacob Xie
+// date: 2023/09/02 18:49:57 Saturday
+// brief:
+
+syntax = "proto3";
+package kbar;
+
+import "google/protobuf/empty.proto";
+
+service KBar {
+  rpc GetSymbols(google.protobuf.Empty) returns (SymbolList);
+  rpc GetKBar(KBarRequest) returns (KBarResponse);
+}
+
+message SymbolList {
+  repeated string symbol = 1;
+}
+
+message KBarRequest {
+  string symbol = 1;
+}
+
+message KBarRow {
+  string symbol = 1;
+  string trade_date = 2;
+  optional double pre_close = 3;
+  optional double open_price = 4;
+  optional double hight_price = 5;
+  optional double low_price = 6;
+  optional double close_price = 7;
+  optional double change = 8;
+  optional double pct_change = 9;
+  optional int32 volume = 10;
+  optional double amount = 11;
+}
+
+message KBarResponse {
+  repeated KBarRow item = 1;
+}
