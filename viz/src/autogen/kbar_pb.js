@@ -144,7 +144,7 @@ proto.kbar.SymbolList.prototype.toObject = function(opt_includeInstance) {
  */
 proto.kbar.SymbolList.toObject = function(includeInstance, msg) {
   var f, obj = {
-    symbolList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    dataList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -183,7 +183,7 @@ proto.kbar.SymbolList.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.addSymbol(value);
+      msg.addData(value);
       break;
     default:
       reader.skipField();
@@ -214,7 +214,7 @@ proto.kbar.SymbolList.prototype.serializeBinary = function() {
  */
 proto.kbar.SymbolList.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSymbolList();
+  f = message.getDataList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       1,
@@ -225,10 +225,10 @@ proto.kbar.SymbolList.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * repeated string symbol = 1;
+ * repeated string data = 1;
  * @return {!Array<string>}
  */
-proto.kbar.SymbolList.prototype.getSymbolList = function() {
+proto.kbar.SymbolList.prototype.getDataList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
@@ -237,7 +237,7 @@ proto.kbar.SymbolList.prototype.getSymbolList = function() {
  * @param {!Array<string>} value
  * @return {!proto.kbar.SymbolList} returns this
  */
-proto.kbar.SymbolList.prototype.setSymbolList = function(value) {
+proto.kbar.SymbolList.prototype.setDataList = function(value) {
   return jspb.Message.setField(this, 1, value || []);
 };
 
@@ -247,7 +247,7 @@ proto.kbar.SymbolList.prototype.setSymbolList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.kbar.SymbolList} returns this
  */
-proto.kbar.SymbolList.prototype.addSymbol = function(value, opt_index) {
+proto.kbar.SymbolList.prototype.addData = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
@@ -256,8 +256,8 @@ proto.kbar.SymbolList.prototype.addSymbol = function(value, opt_index) {
  * Clears the list making it empty but non-null.
  * @return {!proto.kbar.SymbolList} returns this
  */
-proto.kbar.SymbolList.prototype.clearSymbolList = function() {
-  return this.setSymbolList([]);
+proto.kbar.SymbolList.prototype.clearDataList = function() {
+  return this.setDataList([]);
 };
 
 
@@ -432,7 +432,7 @@ proto.kbar.KBarRow.toObject = function(includeInstance, msg) {
     closePrice: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     change: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
     pctChange: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
-    volume: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    volume: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0)
   };
 
@@ -507,7 +507,7 @@ proto.kbar.KBarRow.deserializeBinaryFromReader = function(msg, reader) {
       msg.setPctChange(value);
       break;
     case 10:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readDouble());
       msg.setVolume(value);
       break;
     case 11:
@@ -608,7 +608,7 @@ proto.kbar.KBarRow.serializeBinaryToWriter = function(message, writer) {
   }
   f = /** @type {number} */ (jspb.Message.getField(message, 10));
   if (f != null) {
-    writer.writeInt32(
+    writer.writeDouble(
       10,
       f
     );
@@ -912,11 +912,11 @@ proto.kbar.KBarRow.prototype.hasPctChange = function() {
 
 
 /**
- * optional int32 volume = 10;
+ * optional double volume = 10;
  * @return {number}
  */
 proto.kbar.KBarRow.prototype.getVolume = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 10, 0.0));
 };
 
 
@@ -1022,7 +1022,7 @@ proto.kbar.KBarResponse.prototype.toObject = function(opt_includeInstance) {
  */
 proto.kbar.KBarResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    itemList: jspb.Message.toObjectList(msg.getItemList(),
+    dataList: jspb.Message.toObjectList(msg.getDataList(),
     proto.kbar.KBarRow.toObject, includeInstance)
   };
 
@@ -1063,7 +1063,7 @@ proto.kbar.KBarResponse.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = new proto.kbar.KBarRow;
       reader.readMessage(value,proto.kbar.KBarRow.deserializeBinaryFromReader);
-      msg.addItem(value);
+      msg.addData(value);
       break;
     default:
       reader.skipField();
@@ -1094,7 +1094,7 @@ proto.kbar.KBarResponse.prototype.serializeBinary = function() {
  */
 proto.kbar.KBarResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getItemList();
+  f = message.getDataList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -1106,10 +1106,10 @@ proto.kbar.KBarResponse.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * repeated KBarRow item = 1;
+ * repeated KBarRow data = 1;
  * @return {!Array<!proto.kbar.KBarRow>}
  */
-proto.kbar.KBarResponse.prototype.getItemList = function() {
+proto.kbar.KBarResponse.prototype.getDataList = function() {
   return /** @type{!Array<!proto.kbar.KBarRow>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.kbar.KBarRow, 1));
 };
@@ -1119,7 +1119,7 @@ proto.kbar.KBarResponse.prototype.getItemList = function() {
  * @param {!Array<!proto.kbar.KBarRow>} value
  * @return {!proto.kbar.KBarResponse} returns this
 */
-proto.kbar.KBarResponse.prototype.setItemList = function(value) {
+proto.kbar.KBarResponse.prototype.setDataList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -1129,7 +1129,7 @@ proto.kbar.KBarResponse.prototype.setItemList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.kbar.KBarRow}
  */
-proto.kbar.KBarResponse.prototype.addItem = function(opt_value, opt_index) {
+proto.kbar.KBarResponse.prototype.addData = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.kbar.KBarRow, opt_index);
 };
 
@@ -1138,8 +1138,8 @@ proto.kbar.KBarResponse.prototype.addItem = function(opt_value, opt_index) {
  * Clears the list making it empty but non-null.
  * @return {!proto.kbar.KBarResponse} returns this
  */
-proto.kbar.KBarResponse.prototype.clearItemList = function() {
-  return this.setItemList([]);
+proto.kbar.KBarResponse.prototype.clearDataList = function() {
+  return this.setDataList([]);
 };
 
 

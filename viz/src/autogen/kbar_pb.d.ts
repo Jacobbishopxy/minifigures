@@ -4,10 +4,10 @@ import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty
 
 
 export class SymbolList extends jspb.Message {
-  getSymbolList(): Array<string>;
-  setSymbolList(value: Array<string>): SymbolList;
-  clearSymbolList(): SymbolList;
-  addSymbol(value: string, index?: number): SymbolList;
+  getDataList(): Array<string>;
+  setDataList(value: Array<string>): SymbolList;
+  clearDataList(): SymbolList;
+  addData(value: string, index?: number): SymbolList;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SymbolList.AsObject;
@@ -19,7 +19,7 @@ export class SymbolList extends jspb.Message {
 
 export namespace SymbolList {
   export type AsObject = {
-    symbolList: Array<string>,
+    dataList: Array<string>,
   }
 }
 
@@ -163,10 +163,10 @@ export namespace KBarRow {
 }
 
 export class KBarResponse extends jspb.Message {
-  getItemList(): Array<KBarRow>;
-  setItemList(value: Array<KBarRow>): KBarResponse;
-  clearItemList(): KBarResponse;
-  addItem(value?: KBarRow, index?: number): KBarRow;
+  getDataList(): Array<KBarRow>;
+  setDataList(value: Array<KBarRow>): KBarResponse;
+  clearDataList(): KBarResponse;
+  addData(value?: KBarRow, index?: number): KBarRow;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): KBarResponse.AsObject;
@@ -178,7 +178,7 @@ export class KBarResponse extends jspb.Message {
 
 export namespace KBarResponse {
   export type AsObject = {
-    itemList: Array<KBarRow.AsObject>,
+    dataList: Array<KBarRow.AsObject>,
   }
 }
 

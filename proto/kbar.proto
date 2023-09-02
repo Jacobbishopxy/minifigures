@@ -14,7 +14,7 @@ service KBar {
 }
 
 message SymbolList {
-  repeated string symbol = 1;
+  repeated string data = 1;
 }
 
 message KBarRequest {
@@ -31,10 +31,10 @@ message KBarRow {
   optional double close_price = 7;
   optional double change = 8;
   optional double pct_change = 9;
-  optional int32 volume = 10;
+  optional double volume = 10;
   optional double amount = 11;
 }
 
 message KBarResponse {
-  repeated KBarRow item = 1;
+  repeated KBarRow data = 1;
 }
