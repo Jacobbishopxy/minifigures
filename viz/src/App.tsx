@@ -1,34 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/**
+ * @file:	App.tsx
+ * @author:	Jacob Xie
+ * @date:	2023/09/03 08:14:14 Sunday
+ * @brief:
+ **/
 
-function App() {
-  const [count, setCount] = useState(0)
+import {useRoutes, useNavigate} from "react-router-dom"
+
+import {Layout, Menu} from "antd"
+import {useLocalStorageState} from "ahooks"
+import "./App.css"
+
+
+const {Header, Content, Footer} = Layout
+
+interface AppProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  routes: any
+}
+
+const menuMapping = new Map([
+  ["/", {index: 0, name: "Home"}],
+  ["kbar", {index: 1, name: "KBar"}],
+])
+
+type PageInfo = [number, string, string]
+
+const pageGenerator = (param: AppProps): Array<PageInfo> => {
+  return param.routes.map((obj: {path: string}) => {
+    const value = menuMapping.get(obj.path)
+    const index = value?.index
+    const name = value?.name
+
+    return [index, obj.path, name]
+  }).sort((a: PageInfo, b: PageInfo) => a[0] - b[0])
+}
+
+
+const menuDefaultSelected = {
+  defaultValue: ["0"]
+}
+
+function App(param: AppProps) {
+  const [defaultMenuSelected, setMenuSelected] = useLocalStorageState<string[]>("menu-default-selected", menuDefaultSelected)
+
+  const menu = pageGenerator(param)
+  const navigate = useNavigate()
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <Layout className="layout">
+        <Header className="header">
+          <div className="logo" />
+          <Menu
+            theme="light"
+            mode="horizontal"
+            defaultSelectedKeys={defaultMenuSelected}
+            items={menu.map(res => ({key: `${res[1]}`, label: res[2]}))}
+            onClick={(e) => {
+              setMenuSelected(e.keyPath)
+              navigate(e.key)
+            }}
+          />
+        </Header>
+        <Content className="content">
+          {useRoutes(param.routes)}
+        </Content>
+        <Footer className="footer">jacobbishopxy@gmail.com</Footer>
+      </Layout>
+    </div>
   )
 }
 
