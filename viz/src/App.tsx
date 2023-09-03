@@ -9,33 +9,10 @@ import {useRoutes, useNavigate} from "react-router-dom"
 
 import {Layout, Menu} from "antd"
 import {useLocalStorageState} from "ahooks"
+import {pageGenerator, AppProps} from "./menu"
 import "./App.css"
 
-
 const {Header, Content, Footer} = Layout
-
-interface AppProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  routes: any
-}
-
-const menuMapping = new Map([
-  ["/", {index: 0, name: "Home"}],
-  ["kbar", {index: 1, name: "KBar"}],
-])
-
-type PageInfo = [number, string, string]
-
-const pageGenerator = (param: AppProps): Array<PageInfo> => {
-  return param.routes.map((obj: {path: string}) => {
-    const value = menuMapping.get(obj.path)
-    const index = value?.index
-    const name = value?.name
-
-    return [index, obj.path, name]
-  }).sort((a: PageInfo, b: PageInfo) => a[0] - b[0])
-}
-
 
 const menuDefaultSelected = {
   defaultValue: ["0"]
@@ -54,7 +31,7 @@ function App(param: AppProps) {
         <Header className="header">
           <div className="logo" />
           <Menu
-            theme="light"
+            className="menu"
             mode="horizontal"
             defaultSelectedKeys={defaultMenuSelected}
             items={menu.map(res => ({key: `${res[1]}`, label: res[2]}))}

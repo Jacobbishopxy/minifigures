@@ -49,9 +49,9 @@ impl SrvKBar {
 #[tonic::async_trait]
 impl KBar for SrvKBar {
     async fn get_symbols(&self, _: Request<()>) -> Result<Response<SymbolList>, Status> {
-        Ok(Response::new(SymbolList {
-            data: self.data.keys().cloned().collect_vec(),
-        }))
+        let data = self.data.keys().cloned().collect_vec();
+
+        Ok(Response::new(SymbolList { data }))
     }
 
     async fn get_k_bar(

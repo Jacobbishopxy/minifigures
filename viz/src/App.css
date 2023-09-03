@@ -36,11 +36,6 @@
 	background: rgba(255, 255, 255, 0.3);
 }
 
-.ant-row-rtl #components-layout-demo-top .logo {
-	float: right;
-	margin: 16px 0 16px 24px;
-}
-
 .layout {
 	min-height: 100vh;
 	width: 100vw;
@@ -50,6 +45,11 @@
 .header {
 	display: flex;
 	align-items: center;
+	background-color: antiquewhite;
+}
+
+.menu {
+	width: 100%;
 	background-color: antiquewhite;
 }
 
@@ -63,7 +63,7 @@
 
 .footer {
 	text-align: center;
-	background-color: blanchedalmond;
+	background-color: antiquewhite;
 }
 
 .site-layout-content {
