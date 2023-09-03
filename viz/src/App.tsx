@@ -26,7 +26,7 @@ function App(param: AppProps) {
 
 
   return (
-    <div className="App">
+    <div className="app">
       <Layout className="layout">
         <Header className="header">
           <div className="logo" />

@@ -20,17 +20,17 @@ function calculateMA(dayCount: number, data: DataItem[]) {
         for (let j = 0; j < dayCount; j++) {
             sum += data[i - j][1] || 0
         }
-        result.push(sum / dayCount)
+        result.push((sum / dayCount).toFixed(2))
     }
     return result
 }
 
 
-export const generateEChartsOption = (data: KBarRow[]) => {
+export const generateEChartsOption = (rawData: KBarRow[]) => {
 
-    const dates = data.map((item) => item.tradeDate)
+    const dates = rawData.map((item) => item.tradeDate)
 
-    const d = data.map((item) => {
+    const data = rawData.map((item) => {
         return [item.openPrice, item.closePrice, item.lowPrice, item.hightPrice]
     })
 
@@ -101,7 +101,7 @@ export const generateEChartsOption = (data: KBarRow[]) => {
             {
                 name: 'MA5',
                 type: 'line',
-                data: calculateMA(5, d),
+                data: calculateMA(5, data),
                 smooth: true,
                 showSymbol: false,
                 lineStyle: {
@@ -111,7 +111,7 @@ export const generateEChartsOption = (data: KBarRow[]) => {
             {
                 name: 'MA10',
                 type: 'line',
-                data: calculateMA(10, d),
+                data: calculateMA(10, data),
                 smooth: true,
                 showSymbol: false,
                 lineStyle: {
@@ -121,7 +121,7 @@ export const generateEChartsOption = (data: KBarRow[]) => {
             {
                 name: 'MA20',
                 type: 'line',
-                data: calculateMA(20, d),
+                data: calculateMA(20, data),
                 smooth: true,
                 showSymbol: false,
                 lineStyle: {
@@ -131,7 +131,7 @@ export const generateEChartsOption = (data: KBarRow[]) => {
             {
                 name: 'MA30',
                 type: 'line',
-                data: calculateMA(30, d),
+                data: calculateMA(30, data),
                 smooth: true,
                 showSymbol: false,
                 lineStyle: {

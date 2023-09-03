@@ -9,7 +9,7 @@ use srv::provider::SrvKBar;
 use tonic::transport::Server;
 use tower_http::cors::{Any, CorsLayer};
 
-#[tokio::main]
+#[tokio::main(flavor = "multi_thread", worker_threads = 8)]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
 

@@ -9,6 +9,7 @@ import {useEffect, useState} from "react"
 import ReactECharts from "echarts-for-react"
 import {GrpcWebFetchTransport} from "@protobuf-ts/grpcweb-transport"
 import {Card, Select} from "antd"
+import {useLocalStorageState} from "ahooks"
 
 import {KBarClient} from "../../autogen/kbar.client"
 import {Empty} from "../../autogen/google/protobuf/empty"
@@ -44,7 +45,7 @@ const filterOption = (input: string, option?: {label: string; value: string}) =>
 
 const KBar = () => {
     const [symbolList, setSymbolList] = useState<KBarSymbol[]>()
-    const [selectedSymbol, setSelectedSymbol] = useState<KBarSymbol>()
+    const [selectedSymbol, setSelectedSymbol] = useLocalStorageState<KBarSymbol>("kbar-selectedSymbol")
     const [kbarData, setKBarData] = useState<KBarRow[]>()
 
     // fetch symbol list
@@ -67,11 +68,14 @@ const KBar = () => {
                 showSearch
                 placeholder="Select a symbol"
                 optionFilterProp="children"
+                value={selectedSymbol}
                 onChange={onChange}
                 filterOption={filterOption}
                 options={symbolList?.map(e => ({label: e, value: e}))}
             />
         }
+        headStyle={{background: "beige"}}
+        bodyStyle={{background: "beige"}}
     >
         {
             kbarData ?
@@ -80,6 +84,7 @@ const KBar = () => {
                     notMerge={true}
                     lazyUpdate={true}
                     theme={"theme_name"}
+                    style={{minHeight: "80vh"}}
                 /> :
                 <>Please select a symbol</>
         }
