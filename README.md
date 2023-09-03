@@ -24,7 +24,17 @@ Tech stack:
 
   - [ECharts](https://echarts.apache.org/): Visualization library
 
-## Srv
+## Quick Start
+
+1. Copy your own CSV data into the `./data` directory, see [Data](#data) for the required schema.
+
+1. Run data server by `make dev-srv`
+
+1. Run web server by `make dev-viz`
+
+## Structure
+
+### Backend - Srv
 
 Dependencies for gRPC:
 
@@ -39,7 +49,7 @@ grpcurl -plaintext -import-path proto -proto kbar.proto 127.0.0.1:8001 kbar.KBar
 grpcurl -d '{"symbol": "000001.SH"}' -plaintext -import-path proto -proto kbar.proto 127.0.0.1:8001 kbar.KBar/GetKBar
 ```
 
-## Viz
+### Frontend - Viz
 
 Dependencies for gRPC:
 
@@ -49,8 +59,8 @@ yarn add @protobuf-ts/plugin @protobuf-ts/grpcweb-transport
 
 Use case please see [protobuf-ts](https://github.com/timostamm/protobuf-ts/blob/main/MANUAL.md#grpc-web-transport)
 
-## Data
+### Data
 
-- `kbar`: one must provide a CSV file (under `./data` dir) with head:
+- `kbar`: proto file defined in [here](./proto/kbar.proto), and one must provide a CSV file (under `./data` dir) with head:
 
     `symbol,trade_date,pre_close,open_price,hight_price,low_price,close_price,change,pct_change,volume,amount`
