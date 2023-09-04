@@ -17,7 +17,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let srv_kbar = SrvKBar::new(&kbar_path)?;
     let kbar = KBarServer::new(srv_kbar);
 
-    let addr = "127.0.0.1:8001".parse()?;
+    // let addr = "127.0.0.1:8001".parse()?;
+    let addr = "0.0.0.0:8001".parse()?;
     println!("listening on {}", addr);
 
     let cors = CorsLayer::new()

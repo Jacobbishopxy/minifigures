@@ -30,7 +30,9 @@ Tech stack:
 
 1. Run data server by `make dev-srv`
 
-1. Run web server by `make dev-viz`
+1. Define your own `./viz/.env` file (see `./viz/.template.env`)
+
+1. Run web server by `make init-dev-viz`
 
 ## Structure
 

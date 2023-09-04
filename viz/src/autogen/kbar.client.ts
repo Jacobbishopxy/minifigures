@@ -7,16 +7,16 @@
 // date: 2023/09/02 18:49:57 Saturday
 // brief:
 //
-import type {RpcTransport} from "@protobuf-ts/runtime-rpc"
-import type {ServiceInfo} from "@protobuf-ts/runtime-rpc"
-import {KBar} from "./kbar"
-import type {KBarResponse} from "./kbar"
-import type {KBarRequest} from "./kbar"
-import {stackIntercept} from "@protobuf-ts/runtime-rpc"
-import type {SymbolList} from "./kbar"
-import type {Empty} from "./google/protobuf/empty"
-import type {UnaryCall} from "@protobuf-ts/runtime-rpc"
-import type {RpcOptions} from "@protobuf-ts/runtime-rpc"
+import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
+import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
+import { KBar } from "./kbar";
+import type { KBarResponse } from "./kbar";
+import type { KBarRequest } from "./kbar";
+import { stackIntercept } from "@protobuf-ts/runtime-rpc";
+import type { SymbolList } from "./kbar";
+import type { Empty } from "./google/protobuf/empty";
+import type { UnaryCall } from "@protobuf-ts/runtime-rpc";
+import type { RpcOptions } from "@protobuf-ts/runtime-rpc";
 /**
  * @generated from protobuf service kbar.KBar
  */
@@ -24,11 +24,11 @@ export interface IKBarClient {
     /**
      * @generated from protobuf rpc: GetSymbols(google.protobuf.Empty) returns (kbar.SymbolList);
      */
-    getSymbols(input: Empty, options?: RpcOptions): UnaryCall<Empty, SymbolList>
+    getSymbols(input: Empty, options?: RpcOptions): UnaryCall<Empty, SymbolList>;
     /**
      * @generated from protobuf rpc: GetKBar(kbar.KBarRequest) returns (kbar.KBarResponse);
      */
-    getKBar(input: KBarRequest, options?: RpcOptions): UnaryCall<KBarRequest, KBarResponse>
+    getKBar(input: KBarRequest, options?: RpcOptions): UnaryCall<KBarRequest, KBarResponse>;
 }
 /**
  * @generated from protobuf service kbar.KBar
@@ -43,14 +43,14 @@ export class KBarClient implements IKBarClient, ServiceInfo {
      * @generated from protobuf rpc: GetSymbols(google.protobuf.Empty) returns (kbar.SymbolList);
      */
     getSymbols(input: Empty, options?: RpcOptions): UnaryCall<Empty, SymbolList> {
-        const method = this.methods[0], opt = this._transport.mergeOptions(options)
-        return stackIntercept<Empty, SymbolList>("unary", this._transport, method, opt, input)
+        const method = this.methods[0], opt = this._transport.mergeOptions(options);
+        return stackIntercept<Empty, SymbolList>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: GetKBar(kbar.KBarRequest) returns (kbar.KBarResponse);
      */
     getKBar(input: KBarRequest, options?: RpcOptions): UnaryCall<KBarRequest, KBarResponse> {
-        const method = this.methods[1], opt = this._transport.mergeOptions(options)
-        return stackIntercept<KBarRequest, KBarResponse>("unary", this._transport, method, opt, input)
+        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        return stackIntercept<KBarRequest, KBarResponse>("unary", this._transport, method, opt, input);
     }
 }

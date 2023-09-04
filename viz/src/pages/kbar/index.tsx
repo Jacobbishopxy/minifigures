@@ -22,7 +22,7 @@ import {generateEChartsOption} from "./helper"
 // ================================================================================================
 
 const transport = new GrpcWebFetchTransport({
-    baseUrl: "http://127.0.0.1:8001",
+    baseUrl: import.meta.env.VITE_SERVER_ADDR,
     format: "binary"
 })
 const client = new KBarClient(transport)
@@ -84,7 +84,7 @@ const KBar = () => {
                     notMerge={true}
                     lazyUpdate={true}
                     theme={"theme_name"}
-                    style={{minHeight: "80vh"}}
+                    style={{minHeight: "65vh"}}
                 /> :
                 <>Please select a symbol</>
         }
