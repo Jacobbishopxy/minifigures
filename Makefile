@@ -9,4 +9,4 @@ dev-viz:
 	cd viz && yarn dev
 
 init-dev-viz:
-	cd viz && yarn && yarn dev
+	cd viz && cp .template.env .env && yarn && yarn dev
