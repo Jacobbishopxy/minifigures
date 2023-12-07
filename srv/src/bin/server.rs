@@ -7,7 +7,6 @@ use dotenv::{dotenv, var};
 use srv::grpc_kbar::k_bar_server::KBarServer;
 use srv::provider::SrvKBar;
 use tonic::transport::Server;
-use tower_http::cors::{Any, CorsLayer};
 
 #[tokio::main(flavor = "multi_thread", worker_threads = 8)]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -21,14 +20,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let addr = "0.0.0.0:8001".parse()?;
     println!("listening on {}", addr);
 
-    let cors = CorsLayer::new()
-        .allow_headers(Any)
-        .allow_methods(Any)
-        .allow_origin(Any);
-
     Server::builder()
         .accept_http1(true)
-        .layer(cors)
         .add_service(tonic_web::enable(kbar))
         .serve(addr)
         .await?;
